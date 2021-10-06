@@ -22,7 +22,7 @@ public class Die{
 	
 	// 2 argument constructor
 	public Die(int numOfSide, String type){
-		this.type = "D" + numOfSide;
+		this.type = "D" + type;
 		this.numOfSides = numOfSide;
 		this.currentSideUp = randomSideUp(1, numOfSide);
 	}

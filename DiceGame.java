@@ -18,19 +18,19 @@ import java.util.Random;
 public class DiceGame{
 	
 	public static Scanner scanner = new Scanner(System.in);	// initialize scanner
-	public static Die die, myDie, specialDie;
+	public static Die die, myDie, specialDie;	// objects of model class
 	
 	public static void main(String args[]){
 		
-		die = new Die(); // no argument in contructor
-		System.out.println("Creating a default D6\nThe current side up for " + die.getType () + " is " + die.getCurrentSideUp()); // get current side up from die obj
-		System.out.println("Rolling the D6\nThe new value is " + rollDie(die.getNumOfSides())); // get new value after rolling
+		die = new Die(); //initialize data class, no argument in contructor
+		System.out.println("Creating a default " + die.getType () +"\nThe current side up for " + die.getType () + " is " + die.getCurrentSideUp()); // get current side up from die obj
+		System.out.println("Rolling the " + die.getType () + "\nThe new value is " + rollDie(die.getNumOfSides())); // get new value after rolling
 		
 		System.out.println("\nEnter the number of sides in your 2nd die");
-		int diceSide = scanner.nextInt(); // input number of sides in die from integer
+		int diceSide = scanner.nextInt(); // input number of sides in die with integer value
 		myDie = new Die(diceSide); // pass 1 argument in contructor
 		System.out.println("Creating a D" + myDie.getNumOfSides()); // print number of sides with die object
-		System.out.println("The current side up for " + myDie.getType() + " is " + myDie.getCurrentSideUp()); // name and current side from die object
+		System.out.println("The current side up for " + myDie.getType() + " is " + myDie.getCurrentSideUp()); // name and current side of die object
 		System.out.println("Rolling the " + myDie.getType()); // print die name
 		System.out.println("The new value is " + rollDie(myDie.getNumOfSides())); // get new value after rolling
 		
