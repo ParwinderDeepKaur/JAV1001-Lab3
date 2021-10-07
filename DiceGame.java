@@ -18,54 +18,67 @@ import java.util.Random;
 public class DiceGame{
 	
 	public static Scanner scanner = new Scanner(System.in);	// initialize scanner
-	public static Die die, myDie, specialDie;	// objects of model class
+	public static Die die, myOtherDie, mySpecialDie;	// objects of model class
 	
 	public static void main(String args[]){
 		
-		die = new Die(); //initialize data class, no argument in contructor
-		System.out.println("Creating a default " + die.getType () +"\nThe current side up for " + die.getType () + " is " + die.getCurrentSideUp()); // get current side up from die obj
-		System.out.println("Rolling the " + die.getType () + "\nThe new value is " + rollDie(die.getNumOfSides())); // get new value after rolling
+		// create die object with 0 arg constructor
+		die = new Die();
+        System.out.println("Creating die " + die.getName());
+        System.out.println("Default up side for die " + die.getName() + " is " + die.getCurrentSideUp());
+        System.out.println("Rolling the die " + die.getName());
+        die.roll(); // method to roll the die
+        System.out.println("New value up for die is " + die.getCurrentSideUp()); // print up side after rolling die
+
+        System.out.print("\nEnter the number of sides for your 2nd dice ");
+        int numSide = scanner.nextInt(); // scans number of sides for die
+        myOtherDie = new Die(numSide); // pass number of sides in constructor
 		
-		System.out.println("\nEnter the number of sides in your 2nd die");
-		int diceSide = scanner.nextInt(); // input number of sides in die with integer value
-		myDie = new Die(diceSide); // pass 1 argument in contructor
-		System.out.println("Creating a D" + myDie.getNumOfSides()); // print number of sides with die object
-		System.out.println("The current side up for " + myDie.getType() + " is " + myDie.getCurrentSideUp()); // name and current side of die object
-		System.out.println("Rolling the " + myDie.getType()); // print die name
-		System.out.println("The new value is " + rollDie(myDie.getNumOfSides())); // get new value after rolling
+		//set values using setters
+        myOtherDie.setName("D" + numSide);
+        myOtherDie.setCurrentSideUp(new Random().nextInt(myOtherDie.getNumSides()) + 1);
 		
-		System.out.print("\nEnter the name for your 3rd dice ");
-		String diceName = scanner.next(); // input die name in String variable
+		System.out.println("Creating die " + myOtherDie.getName());
+        System.out.println("Default up side for die " + myOtherDie.getName() + " is " + myOtherDie.getCurrentSideUp());
+        System.out.println("Rolling die " + myOtherDie.getName());
+		
+		// roll the die
+        myOtherDie.roll();
+        System.out.println("New value up for die is " + myOtherDie.getCurrentSideUp()); // print side up after rolling
+
+		// input the name and number of sides for die
+        System.out.print("\nEnter the name for your 3rd dice ");
+		String diceName = scanner.next();
 		System.out.println("Enter the number of sides in your 3rd dice");
-		int numDieSide = scanner.nextInt(); // input number of die in Integer variable
-		specialDie = new Die(numDieSide, diceName); // pass 2 arguments in contructor
-		System.out.println("Creating a " + specialDie.getType()); //die type
-		System.out.println("The current side up for " + specialDie.getType() + " is " + specialDie.getCurrentSideUp()); // die type and current side up from specialDie obj
-		System.out.println("Rolling the " + specialDie.getType()); //die type
-		System.out.println("The new value is " + rollDie(specialDie.getNumOfSides())); // new value after rolling
+		int numOfSide = scanner.nextInt(); 
 		
-		// show maximum number of sides of specialDie obj
-		System.out.println("\nSetting the " + specialDie.getType() + " to show " + specialDie.getNumOfSides());
+		// create die object with 2 args
+        mySpecialDie = new Die(numOfSide, "D" + numOfSide);
+        mySpecialDie.setCurrentSideUp(new Random().nextInt(mySpecialDie.getNumSides()) + 1); //set side up using setters
+		
+        System.out.println("Creating die " + mySpecialDie.getName());
+        System.out.println("Default up side for die " + mySpecialDie.getName() + " is " + mySpecialDie.getCurrentSideUp());
+        System.out.println("Rolling die " + mySpecialDie.getName());
+        
+		// roll the die
+		mySpecialDie.roll();
+        System.out.println("New value up for die is " + mySpecialDie.getCurrentSideUp()); // print side up after rolling
+		
+		// show maximum number of sides of mySpecialDie obj
+		System.out.println("\nSetting the " + mySpecialDie.getName() + " to show " + mySpecialDie.getNumSides());
 		boolean foundMax = false;
 		int count = 1; // to show number of iterations needed to get max value
 		// while loop will run until the max value is not found
 		while(!foundMax){
 			count++;
-			//  match max value with number of sides in specialDie
-			if (rollDie(specialDie.getNumOfSides()) == specialDie.getNumOfSides()){
-				System.out.println("The side up is now "+ specialDie.getNumOfSides() +" after rolling " + count + " times.");
+			mySpecialDie.roll(); // roll the die to update the current side up
+			
+			//  match current side up with number of sides in specialDie
+			if (mySpecialDie.getCurrentSideUp() == mySpecialDie.getNumSides()){
+				System.out.println("The side up is now "+ mySpecialDie.getNumSides() +" after rolling " + count + " times.");
 				foundMax = true; // make true to stop the loop
 			}
 		};
 	}	
-	
-	/**
-	* rollDie method to get the maxNum sides of die and show the random value means current side up
-	* @param maxNum is the maximum sides in the dice
-	* @return generate random number in between 1 and maxNum
-	*/
-	public static int rollDie(int maxNum){
-		return new Random().nextInt(maxNum - 1 + 1) + 1;
-	}
 }
 		

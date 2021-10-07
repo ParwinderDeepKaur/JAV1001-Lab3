@@ -2,48 +2,63 @@ import java.util.Random;
 
 public class Die{
 
-    private String type;
-    private int numOfSides;
+    private String name;
+    private int numSides;
     private int currentSideUp;
-	
-	// 0 argument constructor
-	public Die(){
-		type = "D6";
-		numOfSides = 6;
-		currentSideUp = randomSideUp(1, 6);
-	}
-	
-	// 1 argument constructor
-	public Die(int numOfSide){
-		this.type = "D" + numOfSide;
-		this.numOfSides = numOfSide;
-		this.currentSideUp = randomSideUp(1, numOfSide);
-	}
-	
-	// 2 argument constructor
-	public Die(int numOfSide, String type){
-		this.type = "D" + type;
-		this.numOfSides = numOfSide;
-		this.currentSideUp = randomSideUp(1, numOfSide);
-	}
 
-    // accessors - get Methods
-    public String getType(){ return type; }
-    public int getNumOfSides(){ return numOfSides; }
-    public int getCurrentSideUp(){ return currentSideUp; }
-    
-    // mutators - set methods
-    public void setType(String name){
-        type = name;
+	// constructor with no argument
+    public Die() {
+        name = "D6";
+        numSides = 6;
+        currentSideUp = 6;
     }
-	public void setNumOfSides(int numOfSides){
-        numOfSides = numOfSides;
+
+	// constructor with 1 argument
+    public Die(int numSides) {
+        this.numSides = numSides;
     }
-    public void setCurrentSideUp(int upSide){
-        currentSideUp = upSide;
+
+	// constructor with 2 arguments
+    public Die(int numSides, String name) {
+        this.name = name;
+        this.numSides = numSides;
+    }
+
+	// getters for name
+    public String getName() {
+        return name;
     }
 	
-	public int randomSideUp(int min, int max){
-		return new Random().nextInt(max - min + min) + min;
-	}
+	// setter for name
+	public void setName(String name) {
+        this.name = name;
+    }
+	
+	// getter for numSides
+    public int getNumSides() {
+        return numSides;
+    }
+
+	// setter for numSides
+    public void setNumSides(int numSides) {
+        this.numSides = numSides;
+    }
+
+	// getter for currentSideUp
+    public int getCurrentSideUp() {
+        return currentSideUp;
+    }
+
+	// setter for currentSideUp
+    public void setCurrentSideUp(int currentSideUp) {
+        this.currentSideUp = currentSideUp;
+    }
+
+	/**
+	* roll method genrates a random integer value
+	* and updates the currentSideUp variable
+	*/
+    public void roll(){
+        currentSideUp = new Random().nextInt(numSides - 1 + 1) + 1;
+    }
 }
