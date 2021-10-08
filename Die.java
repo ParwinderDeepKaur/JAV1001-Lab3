@@ -55,7 +55,7 @@ public class Die{
     }
 
 	/**
-	* roll method genrates a random integer value
+	* roll method generates a random integer value
 	* and updates the currentSideUp variable
 	*/
     public void roll(){
