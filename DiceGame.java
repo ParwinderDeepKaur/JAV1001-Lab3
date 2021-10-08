@@ -30,7 +30,7 @@ public class DiceGame{
         System.out.println("Rolling the die " + die.getName());
         die.roll(); // roll the die to get new value
         System.out.println("New value up for die is " + die.getCurrentSideUp()); // print side up after rolling
-
+		
 		// die 2
         System.out.print("\nEnter the number of sides for your 2nd die ");
         int numSide = scanner.nextInt();
@@ -41,18 +41,18 @@ public class DiceGame{
         System.out.println("Rolling die " + myOtherDie.getName());
         myOtherDie.roll(); // roll the die to get new value
         System.out.println("New value up for die is " + myOtherDie.getCurrentSideUp()); // print side up after rolling
-
+		
 		// die 3
         System.out.print("\nEnter the name for your 3rd dice ");
 		String diceName = scanner.next();
 		System.out.println("Enter the number of sides in your 3rd die");
 		int numOfSide = scanner.nextInt();
-        mySpecialDie = new Die(numOfSide, diceName); // create die object with 2 args
+		mySpecialDie = new Die(numOfSide, diceName); // create die object with 2 args
 		mySpecialDie.roll(); // calculates default up side value
-        System.out.println("Default up side for die " + mySpecialDie.getName() + " is " + mySpecialDie.getCurrentSideUp());
-        System.out.println("Rolling die " + mySpecialDie.getName());
+		System.out.println("Default up side for die " + mySpecialDie.getName() + " is " + mySpecialDie.getCurrentSideUp());
+		System.out.println("Rolling die " + mySpecialDie.getName());
 		mySpecialDie.roll(); // roll the die for new value
-        System.out.println("New value up for die is " + mySpecialDie.getCurrentSideUp()); // print side up after rolling
+		System.out.println("New value up for die is " + mySpecialDie.getCurrentSideUp()); // print side up after rolling
 		
 		// show maximum number of sides of mySpecialDie obj
 		System.out.println("\nSetting the " + mySpecialDie.getName() + " to show " + mySpecialDie.getNumSides());
